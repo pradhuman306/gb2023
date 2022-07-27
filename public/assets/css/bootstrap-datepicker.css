@@ -1,0 +1,61 @@
+/* calendar design */
+
+.datepicker-inline,
+.datepicker table {
+    width: 100%;
+    border-collapse: unset;
+}
+
+.inline-cal table {
+    table-layout: fixed;
+}
+
+.today.day {
+    background: #654FD3;
+    color: #fff;
+}
+
+.highlighted.day {
+    background: rgb(255 0 0 / 7%);
+    color: red;
+}
+
+.range-end,
+.range-start {
+    background: #ffc5a0;
+}
+
+.datepicker table tr td,
+.datepicker table tr th {
+    text-align: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 4px;
+    border: none;
+    padding: 10px;
+}
+
+.datepicker table tr td span {
+    display: block;
+    width: 23%;
+    height: 54px;
+    line-height: 54px;
+    float: left;
+    margin: 1%;
+    cursor: pointer;
+    border-radius: 4px;
+}
+
+.datepicker-months,
+.datepicker-years,
+.datepicker-decades,
+.datepicker-centuries {
+    width: 300px;
+}
+
+.datepicker-inline .datepicker-months,
+.datepicker-inline .datepicker-years,
+.datepicker-inline .datepicker-decades,
+.datepicker-inline .datepicker-centuries {
+    width: 100%;
+}

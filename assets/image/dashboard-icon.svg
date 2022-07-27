@@ -1,0 +1,22 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="25" height="25" viewBox="0 0 25 25">
+  <g id="Group_114" data-name="Group 114" transform="translate(-58 -149)">
+    <g id="Group_60" data-name="Group 60" transform="translate(2.302 -0.698)">
+      <g id="Rectangle_74" data-name="Rectangle 74" transform="translate(55.698 149.698)" fill="none" stroke="#654fd3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.3">
+        <rect width="11" height="11" rx="2" stroke="none"/>
+        <rect x="1.15" y="1.15" width="8.7" height="8.7" rx="0.85" fill="none"/>
+      </g>
+      <g id="Rectangle_75" data-name="Rectangle 75" transform="translate(55.698 163.698)" fill="none" stroke="#654fd3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.3">
+        <rect width="11" height="11" rx="2" stroke="none"/>
+        <rect x="1.15" y="1.15" width="8.7" height="8.7" rx="0.85" fill="none"/>
+      </g>
+      <g id="Rectangle_76" data-name="Rectangle 76" transform="translate(69.698 149.698)" fill="none" stroke="#654fd3" stroke-linecap="round" stroke-linejoin="round" stroke-width="2.3">
+        <rect width="11" height="11" rx="2" stroke="none"/>
+        <rect x="1.15" y="1.15" width="8.7" height="8.7" rx="0.85" fill="none"/>
+      </g>
+    </g>
+    <g id="Path_24" data-name="Path 24" transform="translate(64.441 158.441)" fill="none" stroke-linecap="round" stroke-linejoin="round">
+      <path d="M18.559,10.029A5.529,5.529,0,1,1,13.029,4.5,5.529,5.529,0,0,1,18.559,10.029Z" stroke="none"/>
+      <path d="M 13.0294189453125 13.05883884429932 C 14.69984912872314 13.05883884429932 16.05883979797363 11.69984912872314 16.05883979797363 10.0294189453125 C 16.05883979797363 8.358988761901855 14.69984912872314 6.999999046325684 13.0294189453125 6.999999046325684 C 11.35898876190186 6.999999046325684 9.999999046325684 8.358988761901855 9.999999046325684 10.0294189453125 C 9.999999046325684 11.69984912872314 11.35898876190186 13.05883884429932 13.0294189453125 13.05883884429932 M 13.0294189453125 15.55883884429932 C 9.975608825683594 15.55883884429932 7.499999046325684 13.08322906494141 7.499999046325684 10.0294189453125 C 7.499999046325684 6.975608825683594 9.975608825683594 4.499999046325684 13.0294189453125 4.499999046325684 C 16.08323860168457 4.499999046325684 18.55883979797363 6.975608825683594 18.55883979797363 10.0294189453125 C 18.55883979797363 13.08322906494141 16.08323860168457 15.55883884429932 13.0294189453125 15.55883884429932 Z" stroke="none" fill="#ffc5a0"/>
+    </g>
+  </g>
+</svg>
