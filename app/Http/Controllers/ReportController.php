@@ -55,7 +55,7 @@ class ReportController extends Controller
                         <span class="tooltips">Edit</span>
                     </li>
                     <li class="tool tool-delete">
-                        <a href="javascript:void(0)" type="submit" class="delete-btn deletereport" data-id="'.$reports[$i]->id.'">
+                        <a href="javascript:void(0)" type="submit" class="btn-sml delete-btn deletereport" data-id="'.$reports[$i]->id.'">
                         <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                         <path d="M10 15L10 12" stroke="#8F99B3" stroke-width="2" stroke-linecap="round"></path>
                         <path d="M14 15L14 12" stroke="#8F99B3" stroke-width="2" stroke-linecap="round"></path>

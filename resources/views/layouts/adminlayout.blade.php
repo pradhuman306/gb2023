@@ -8,42 +8,8 @@
     <link rel="shortcut icon" href="{{url('/')}}/assets/image/favicon.svg" type="image/x-icon">
     <link rel="stylesheet" href="{{url('/')}}/assets/css/global.css">
 </head>
-<style>
-.modal.right .modal-dialog {
-    width: 100%;
-}
-.modal {
-    z-index: 9999;
-}
-    @media (max-width: 991px) {
-    
-       .open .main-menus {
-        padding:0 20px;
-    }
-    .main-menus {
-    width: 0;
-    padding: 0;
-}
-.main-wrapper {
-    margin-left: 0;
-    width: calc(100% - 0px);
-    padding: 0;
-}
-.active .sub-menus {
-    width: calc(100% - 0px);
-}
-body.open {
-    height: 100vh;
-    overflow: hidden;
-}
-}
-@media(max-width:767px){
-    .sidebar-wrapper .main-menus {
-    padding: 0;
-}
-}
-</style>
 <body>
+    <div class="overlay"></div>
     <div class="loader-wrap">
         <div class="lds-ripple">
             <div></div>
@@ -98,15 +64,15 @@ body.open {
                                     $yearData = App\Models\Year::get();
                                     foreach($yearData as $y){
                                     if($y->status==1){
-                                        $y_id=$y->id;
+                                    $y_id=$y->id;
                                     }
-                                }
+                                    }
                                     $records = App\Models\Record::where("session","=",$y_id)->get();
                                     $studentCount = 0
                                     @endphp
                                     @foreach($records as $r)
                                     @php
-                                        $studentCount += App\Models\Student::Where('id', $r->students_id)->get()->count();
+                                    $studentCount += App\Models\Student::Where('id', $r->students_id)->get()->count();
                                     @endphp
                                     @endforeach
                                     <span>Students <small class="badge badge-primary">{{$studentCount}}</small> </span>
@@ -307,15 +273,21 @@ body.open {
     <script type="text/javascript" src="{{url('/')}}/assets/js/sweetalert.min.js"></script>
     <script>
         function swalAlert(type, message) {
-                        Swal.fire({
-                        position: 'top-end',
-                        icon: type,
-                        title: message,
-                        showConfirmButton: false,
-                        timer: 1500,
-                        })
-                }
-        
+            Swal.fire({
+                position: 'top-end',
+                icon: type,
+                title: message,
+                showConfirmButton: false,
+                timer: 1500,
+            })
+        }
+
+
+        $(".addSession").click(function() {
+            $('#mysessionModal').modal('show');
+        });
+
+
         //  fees javascript 
         $(".addFees").click(function() {
             $('#myfeesModal').modal('show');
@@ -434,7 +406,7 @@ body.open {
                     var resp = $.parseJSON(data);
                     if (resp.success == 0) {
                         // $('#tabs-2').html(resp.message);
-                    swalAlert('error',resp.message);
+                        swalAlert('error', resp.message);
                     } else {
                         $('.student_ids').html(resp.students.student_id);
                         $('.scholar').html(resp.students.scholar_no);
@@ -494,9 +466,12 @@ body.open {
 
         //dashboard
         $(".earning").click(function() {
-            $('.earning').html('Loading...');
             var start = $("#starts").val();
             var end = $("#ends").val();
+            if(start == '' || end == ''){
+                
+            }else{
+            $('.earning').html('Loading...');
             var startresult = start.split('/');
             start = startresult[1] + '/' + startresult[0] + '/' + startresult[2];
 
@@ -516,7 +491,7 @@ body.open {
                     table.destroy();
                     $('#total').html(fb.total);
                     $('.fees-tables').html(fb.table);
-            $('.earning').html('Filter');
+                    $('.earning').html('Filter');
                     $("#fees-table").DataTable({
                         language: {
                             search: "",
@@ -529,7 +504,7 @@ body.open {
                     });
                 }
             });
-
+        }
         });
         //assign role
         $(".addUser").click(function() {
@@ -681,250 +656,250 @@ body.open {
         });
 
 
-          $("#class-form").validate({
-                rules: {
-                    years_id: {
-                        required: true,
-                    },
-                    student_classes_id: {
-                        required: true,
-                    },
-                    amount: {
-                        required: true,
-                    },
-                    action: "required"
+        $("#class-form").validate({
+            rules: {
+                years_id: {
+                    required: true,
                 },
-                messages: {
-                    years_id: {
-                        required: "Year is required",
-                    },
-                    student_classes_id: {
-                        required: "Class is required",
-                    },
-                    amount: {
-                        required: "Amount is required",
-                    },
+                student_classes_id: {
+                    required: true,
                 },
-            });
+                amount: {
+                    required: true,
+                },
+                action: "required"
+            },
+            messages: {
+                years_id: {
+                    required: "Year is required",
+                },
+                student_classes_id: {
+                    required: "Class is required",
+                },
+                amount: {
+                    required: "Amount is required",
+                },
+            },
+        });
 
 
-            $("#profile-password").validate({
-                rules: {
-                    oldpassword: {
-                        required: true,
-                    },
-                    password: {
-                        required: true,
-                    },
-                    cpassword: {
-                        required: true,
-                    },
-                    action: "required"
+        $("#profile-password").validate({
+            rules: {
+                oldpassword: {
+                    required: true,
                 },
-                messages: {
-                    oldpassword: {
-                        required: "Old password is required",
-                    },
-                    password: {
-                        required: "Password is required",
-                    },
-                    cpassword: {
-                        required: "Confirm password is required",
-                    },
+                password: {
+                    required: true,
                 },
-            });
+                cpassword: {
+                    required: true,
+                },
+                action: "required"
+            },
+            messages: {
+                oldpassword: {
+                    required: "Old password is required",
+                },
+                password: {
+                    required: "Password is required",
+                },
+                cpassword: {
+                    required: "Confirm password is required",
+                },
+            },
+        });
 
-            
-            $("#profile-details").validate({
-                rules: {
-                    name: {
-                        required: true,
-                    },
-                    email: {
-                        required: true,
-                    },
-                    action: "required"
-                },
-                messages: {
-                    name: {
-                        required: "Name is required",
-                    },
-                    email: {
-                        required: "Email is required",
-                    },
-                },
-            });
 
-            $("#storeuserrole").validate({
-                rules: {
-                    name: {
-                        required: true,
-                    },
-                    password: {
-                        required: true,
-                    },
-                    action: "required"
+        $("#profile-details").validate({
+            rules: {
+                name: {
+                    required: true,
                 },
-                messages: {
-                    name: {
-                        required: "Name is required",
-                    },
-                    password: {
-                        required: "Password is required",
-                    },
+                email: {
+                    required: true,
                 },
-            });
+                action: "required"
+            },
+            messages: {
+                name: {
+                    required: "Name is required",
+                },
+                email: {
+                    required: "Email is required",
+                },
+            },
+        });
 
-            $('#updateuserrole').validate({
-                rules: {
-                    name: {
-                        required: true,
-                    },
-                    action: "required"
+        $("#storeuserrole").validate({
+            rules: {
+                name: {
+                    required: true,
                 },
-                messages: {
-                    name: {
-                        required: "Name is required",
-                    },
+                password: {
+                    required: true,
                 },
-            });
+                action: "required"
+            },
+            messages: {
+                name: {
+                    required: "Name is required",
+                },
+                password: {
+                    required: "Password is required",
+                },
+            },
+        });
 
-            $('#add-session-form').validate({
-                rules: {
-                    years: {
-                        required: true,
-                    },
-                    action: "required"
+        $('#updateuserrole').validate({
+            rules: {
+                name: {
+                    required: true,
                 },
-                messages: {
-                    years: {
-                        required: "Years is required",
-                    },
+                action: "required"
+            },
+            messages: {
+                name: {
+                    required: "Name is required",
                 },
-            });
+            },
+        });
 
-            $('#editfeestructure').validate({
-                rules: {
-                    amount: {
-                        required: true,
-                    },
-                    action: "required"
+        $('#add-session-form').validate({
+            rules: {
+                years: {
+                    required: true,
                 },
-                messages: {
-                    amount: {
-                        required: "Amount is required",
-                    },
+                action: "required"
+            },
+            messages: {
+                years: {
+                    required: "Years is required",
                 },
-            });
+            },
+        });
 
-            $('#date-form').validate({
-                rules: {
-                    start: {
-                        required: true,
-                    },
-                    end: {
-                        required: true,
-                    },
-                    action: "required"
+        $('#editfeestructure').validate({
+            rules: {
+                amount: {
+                    required: true,
                 },
-                messages: {
-                    start: {
-                        required: "Start date is required",
-                    },
-                    end: {
-                        required: "End date is required",
-                    },
+                action: "required"
+            },
+            messages: {
+                amount: {
+                    required: "Amount is required",
                 },
-            });
+            },
+        });
 
-            $('#studentAdd').validate({
-                rules: {
-                    name: {
-                        required: true,
-                    },
-                    father_name: {
-                        required: true,
-                    },
-                    mother_name: {
-                        required: true,
-                    },
-                    address: {
-                        required: true,
-                    },
-                    class_name: {
-                        required: true,
-                    },
-                    dob: {
-                        required: true,
-                    },
-                    action: "required"
+        $('#date-form').validate({
+            rules: {
+                start: {
+                    required: true,
                 },
-                messages: {
-                    name: {
-                        required: "Name is required",
-                    },
-                    father_name: {
-                        required: "Father name is required",
-                    },
-                    mother_name: {
-                        required: "Mother name is required",
-                    },
-                    address: {
-                        required: "Address is required",
-                    },
-                    class_name: {
-                        required: "Class is required",
-                    },
-                    dob: {
-                        required: "Date of birth is required",
-                    },
-                   
+                end: {
+                    required: true,
                 },
-            });
-            
-            $('#edit-student').validate({
-                rules: {
-                    name: {
-                        required: true,
-                    },
-                    father_name: {
-                        required: true,
-                    },
-                    mother_name: {
-                        required: true,
-                    },
-                    address: {
-                        required: true,
-                    },
-                    class_name: {
-                        required: true,
-                    },
-                    dob: {
-                        required: true,
-                    },
-                    action: "required"
+                action: "required"
+            },
+            messages: {
+                start: {
+                    required: "Start date is required",
                 },
-                messages: {
-                    name: {
-                        required: "Name is required",
-                    },
-                    father_name: {
-                        required: "Father name is required",
-                    },
-                    mother_name: {
-                        required: "Mother name is required",
-                    },
-                    address: {
-                        required: "Address is required",
-                    },
-                    class_name: {
-                        required: "Class is required",
-                    },
-                    dob: {
-                        required: "Date of birth is required",
-                    },
+                end: {
+                    required: "End date is required",
                 },
-            });
+            },
+        });
+
+        $('#studentAdd').validate({
+            rules: {
+                name: {
+                    required: true,
+                },
+                father_name: {
+                    required: true,
+                },
+                mother_name: {
+                    required: true,
+                },
+                address: {
+                    required: true,
+                },
+                class_name: {
+                    required: true,
+                },
+                dob: {
+                    required: true,
+                },
+                action: "required"
+            },
+            messages: {
+                name: {
+                    required: "Name is required",
+                },
+                father_name: {
+                    required: "Father name is required",
+                },
+                mother_name: {
+                    required: "Mother name is required",
+                },
+                address: {
+                    required: "Address is required",
+                },
+                class_name: {
+                    required: "Class is required",
+                },
+                dob: {
+                    required: "Date of birth is required",
+                },
+
+            },
+        });
+
+        $('#edit-student').validate({
+            rules: {
+                name: {
+                    required: true,
+                },
+                father_name: {
+                    required: true,
+                },
+                mother_name: {
+                    required: true,
+                },
+                address: {
+                    required: true,
+                },
+                class_name: {
+                    required: true,
+                },
+                dob: {
+                    required: true,
+                },
+                action: "required"
+            },
+            messages: {
+                name: {
+                    required: "Name is required",
+                },
+                father_name: {
+                    required: "Father name is required",
+                },
+                mother_name: {
+                    required: "Mother name is required",
+                },
+                address: {
+                    required: "Address is required",
+                },
+                class_name: {
+                    required: "Class is required",
+                },
+                dob: {
+                    required: "Date of birth is required",
+                },
+            },
+        });
 
 
         $('#but-edit').click(function() {
@@ -1020,7 +995,7 @@ body.open {
                                 //     .msg +
                                 //     '<button type="button" class="closedeposite" data-dismiss="modal">x</button></div>'
                                 // );
-                            swalAlert('success',res.msg);
+                                swalAlert('success', res.msg);
 
                                 $('.gave').html(res.gave);
                                 $('.take').html(res.due);
@@ -1086,7 +1061,7 @@ body.open {
                                 //     .msg +
                                 //     '<button type="button" class="closedeposite" data-dismiss="modal">x</button></div>'
                                 // );
-                                swalAlert('success',res.msg);
+                                swalAlert('success', res.msg);
 
                                 $('.gave').html(res.gave);
                                 $('.take').html(res.due);
@@ -1190,12 +1165,12 @@ body.open {
 
     @if(Session::has('success'))
     <script>
-      swalAlert('success',"{{ Session::get('success') }}");
+        swalAlert('success', "{{ Session::get('success') }}");
     </script>
     @endif
     @if(Session::has('error'))
     <script>
-      swalAlert('error',"{{ Session::get('error') }}");
+        swalAlert('error', "{{ Session::get('error') }}");
     </script>
     @endif
 

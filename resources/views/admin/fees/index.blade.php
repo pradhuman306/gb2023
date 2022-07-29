@@ -43,7 +43,6 @@
                     <!-- Modal content-->
                     <div class="modal-content">
                         <div class="modal-header">
-
                             <h4 class="modal-title">Add Fess</h4>
                             <button type="button" class="close" data-dismiss="modal">
                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none"

@@ -1,3 +1,9 @@
+jQuery("#nav-icon").click(function () {
+    jQuery(this).toggleClass("nav-open");
+    jQuery("body").toggleClass("menu-open");
+  });
+
+
 // data table js start
 $(window).on('load', function() {
     $(".loader-wrap").fadeOut("slow");

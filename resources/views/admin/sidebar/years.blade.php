@@ -146,7 +146,7 @@
 
                                         <li class="tool tool-delete">
                                             @if(Auth::check() && Auth::user()->user_type == "Admin")
-                                            <a href="javascript:void(0)" type="submit" class="delete-btn deletestudent"
+                                            <a href="javascript:void(0)" type="submit" class="btn-sml delete-btn deletestudent"
                                                 data-id="{{$student->id}}" data-name="{{$t->id}}">
                                                 <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                         <path d="M10 15L10 12" stroke="#8F99B3" stroke-width="2" stroke-linecap="round"></path>
