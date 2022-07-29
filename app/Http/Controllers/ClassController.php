@@ -14,7 +14,7 @@ class ClassController extends Controller
     public function index(){
         $years=Year::where("status","=",1)->get();
         if($years->isEmpty()){
-            Session::flash('message', 'First add session and make it current to database!');
+            Session::flash('error', 'First add session and make it current to database!');
             return redirect('years');
         }
         $year = Year::where("status","=",1)->get();
@@ -34,8 +34,9 @@ class ClassController extends Controller
     public function store(Request $request){
 
         $request->validate([
-           
-            
+            'years_id' => 'required',
+            'student_classes_id' => 'required',
+            'amount' => 'required',
         ]);
 
         $tests= new Student_fee;
@@ -45,7 +46,7 @@ class ClassController extends Controller
       
         
         $tests->save();
-        Session::flash('message', 'Fees added successfully!');
+        Session::flash('success', 'Fees added successfully!');
        
         return redirect('add_class');
 
@@ -67,7 +68,9 @@ class ClassController extends Controller
     public function update(Request $request ,$id){
        
         $request->validate([
-            
+            'years_id' => 'required',
+            'student_classes_id' => 'required',
+            'amount' => 'required',
         ]);
         $tests =Student_fee::where("id", "=", $id)->first();
        
@@ -77,15 +80,14 @@ class ClassController extends Controller
        
         $tests->update(); 
       
-        Session::flash('message', 'Data updated successfully!');
+        Session::flash('success', 'Data updated successfully!');
         return redirect('add_class');
 
     }
     public function destroy(request $request){
         $id = $request->all();
         Student_fee::destroy($id);
-        // Session::flash('message', ' data delete successfuly!');
-       
+        Session::flash('success', ' data delete successfuly!');
 
     }
     public function FeesData($id){
@@ -98,6 +100,11 @@ class ClassController extends Controller
 
     }
      public function PromoteData(Request $request){
+
+        $request->validate([
+            'year' => 'required',
+            'class' => 'required',
+        ]);
 
         $years = Year::where("status","=",1)->get();
         foreach($years as $y){
@@ -126,7 +133,7 @@ class ClassController extends Controller
         $record->save();
        
        } 
-       Session::flash('message', 'Student promoted to next class.');
+       Session::flash('success', 'Student promoted to next class.');
        return redirect('students');
       
       

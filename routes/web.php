@@ -21,6 +21,7 @@ Auth::routes();
 Route::group(['middleware' => ['auth', 'disablepreventback']], function () {
     Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout');
     Route::resource('/feesstructure','App\Http\Controllers\FeesController');
+    Route::post('/feestore','App\Http\Controllers\FeesController@store')->name('feestore');
     Route::delete('feesdelete', 'App\Http\Controllers\FeesController@destroy')->name('destroy');
     Route::post('editfees', 'App\Http\Controllers\FeesController@update')->name('update');
     Route::resource('/students','App\Http\Controllers\StudentController');

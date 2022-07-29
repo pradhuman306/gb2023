@@ -50,7 +50,7 @@ class YearController extends Controller
             $years->status = '0';
         }
         $years->save();
-        Session::flash('message', 'Session added successfully!');
+        Session::flash('success', 'Session added successfully!');
 
         return redirect()->back();
 
@@ -81,7 +81,7 @@ class YearController extends Controller
 
         // $tests->update(); 
 
-        // Session::flash('message', ' data updated successfuly!');
+        // Session::flash('success', ' data updated successfuly!');
         // return redirect('years');
 
     }
@@ -119,12 +119,12 @@ class YearController extends Controller
                 'status' => 1,
                 'years'=>$test,
             ]);
-            Session::flash('message', 'Session changed successfully!');
+            Session::flash('success', 'Session changed successfully!');
     
             return redirect()->back();
         }
        else{
-        Session::flash('message', 'First add session with selecting checkbox!');
+        Session::flash('error', 'First add session with selecting checkbox!');
         return redirect()->back();
        }
 

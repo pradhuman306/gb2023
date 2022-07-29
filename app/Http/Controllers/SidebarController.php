@@ -168,7 +168,7 @@ class SidebarController extends Controller
     { 
           $id = $request->input('payment_id');
         Payment::destroy($id);
-        Session::flash('message', 'Data deleted successfully!');
+        Session::flash('success', 'Data deleted successfully!');
         return redirect()->back();
     }
 }

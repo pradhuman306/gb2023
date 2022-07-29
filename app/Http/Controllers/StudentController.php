@@ -85,7 +85,7 @@ class StudentController extends Controller
         $records->class_name = $request->class_name;
         $records->session = $request->session;
         $records->save();
-        Session::flash('message', 'Student added successfully!');
+        Session::flash('success', 'Student added successfully!');
 
         return redirect()->back();
 
@@ -172,7 +172,7 @@ class StudentController extends Controller
         $records->session = $request->session;
         $records->class_name = $class;
         $records->update();
-        Session::flash('message', 'Data updated successfully!');
+        Session::flash('success', 'Data updated successfully!');
         return redirect()->back();
     }
     public function destroy(Request $request)
@@ -189,7 +189,7 @@ class StudentController extends Controller
         // Record::destroy($rid);
         Record::where('session', $y_id)->where('id', $rid)->delete();
 
-        Session::flash('message', 'Data deleted successfully!');
+        Session::flash('success', 'Data deleted successfully!');
         return redirect()->back();
     }
      public function delete(Request $request)
@@ -273,7 +273,12 @@ class StudentController extends Controller
                         </a>
                         </li>
                         <li class="tool tool-delete">
-                        <a href="javascript:void(0)" type="submit" class="delete-btn deletereport" data-id="'.$reports[$i]->id.'"><img src="http://localhost/GB-convent/assets/image/feather-trash.svg" width="16px" alt=""></a>
+                        <a href="javascript:void(0)" type="submit" class="delete-btn deletereport" data-id="'.$reports[$i]->id.'"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M10 15L10 12" stroke="#8F99B3" stroke-width="2" stroke-linecap="round"></path>
+                        <path d="M14 15L14 12" stroke="#8F99B3" stroke-width="2" stroke-linecap="round"></path>
+                        <path d="M3 7H21V7C20.0681 7 19.6022 7 19.2346 7.15224C18.7446 7.35523 18.3552 7.74458 18.1522 8.23463C18 8.60218 18 9.06812 18 10V16C18 17.8856 18 18.8284 17.4142 19.4142C16.8284 20 15.8856 20 14 20H10C8.11438 20 7.17157 20 6.58579 19.4142C6 18.8284 6 17.8856 6 16V10C6 9.06812 6 8.60218 5.84776 8.23463C5.64477 7.74458 5.25542 7.35523 4.76537 7.15224C4.39782 7 3.93188 7 3 7V7Z" stroke="#8F99B3" stroke-width="2" stroke-linecap="round"></path>
+                        <path d="M10.0681 3.37059C10.1821 3.26427 10.4332 3.17033 10.7825 3.10332C11.1318 3.03632 11.5597 3 12 3C12.4403 3 12.8682 3.03632 13.2175 3.10332C13.5668 3.17033 13.8179 3.26427 13.9319 3.37059" stroke="#8F99B3" stroke-width="2" stroke-linecap="round"></path>
+                    </svg></a>
                         </li>
                         </ul></td></tr>';
             }

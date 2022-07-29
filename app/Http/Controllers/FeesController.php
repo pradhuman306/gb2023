@@ -13,7 +13,7 @@ class FeesController extends Controller
     public function index(){
         $years=Year::where("status","=",1)->get();
         if($years->isEmpty()){
-            Session::flash('message', 'First add session and make it current to database!');
+            Session::flash('error', 'First add session and make it current to database!');
             return redirect('years');
         }
         $year = Year::where("status","=",1)->get();
@@ -34,19 +34,17 @@ class FeesController extends Controller
     public function store(Request $request){
 
         $request->validate([
-           
-            
+            'years_id' => 'required',
+            'student_classes_id' => 'required',
+            'amount' => 'required',
         ]);
 
         $tests= new Student_fee;
         $tests->years_id=$request->years_id;
         $tests->student_classes_id=$request->student_classes_id;
         $tests->amount=$request->amount;
-      
-        
         $tests->save();
-        Session::flash('message', 'Fees added successfully!');
-       
+        Session::flash('success', 'Fees added successfully!');
         return redirect('feesstructure');
 
     }
@@ -94,7 +92,7 @@ class FeesController extends Controller
        
         $tests->update(); 
       
-        Session::flash('message', 'Data updated successfully!');
+        Session::flash('success', 'Data updated successfully!');
         return redirect('feesstructure');
 
     }
@@ -102,7 +100,7 @@ class FeesController extends Controller
         $id = $request->input('fees_id');
       
         Student_fee::destroy($id);
-        Session::flash('message', 'Data delete successfully!');
+        Session::flash('success', 'Data delete successfully!');
         return redirect('feesstructure');
 
     }
@@ -144,7 +142,7 @@ class FeesController extends Controller
         $record->save();
        
        } 
-       Session::flash('message', 'Student promoted to next class.');
+       Session::flash('success', 'Student promoted to next class.');
        return redirect('students');
       
       

@@ -15,11 +15,9 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        // $report= DB::table("reports")->latest()->take(5)->get()->sum("fees");
         $total=0;
         $student = 0;
         $year = 0;
-        // $student = Student::get()->count();
          $yearlist = Year::get();
          foreach($yearlist as $y){
             if($y->status==1){
@@ -31,7 +29,6 @@ class DashboardController extends Controller
         ->where('records.session', '=', $y_id)
         ->select('students.*')->get()->count();
         
-        
         $session = Year::where('status', '=', 1)->get();
         foreach ($session as $s) {
             $year = $s->years;
@@ -41,78 +38,80 @@ class DashboardController extends Controller
         $users = DB::table('students')
         ->join('records', 'students.id', '=', 'records.students_id')
         ->join('reports', 'records.id', '=', 'reports.records_id')
-        ->select('students.*', 'records.class_name', 'reports.fees','reports.date')->latest()->take(5)->get();
-    
-    
-    
+        ->where('records.session', '=', $y_id)
+        ->select('students.*', 'records.class_name','records.session','reports.fees','reports.date')->latest()->take(5)->get();
     
         $fees = Student_fee::get();
-          $fees = Student_fee::where('years_id', '=', $y_id)->get();
         $sum=0;
         foreach($users as $u){
             $sum +=$u->fees;
         }
-
         $total = $sum;
-
-        // var_dump( $sum);
-        
-        return view('admin.dashboard.index', compact("student", "year", "total","users","classes","fees"));
+        return view('admin.dashboard.index', compact("student", "year", "total","users","classes","fees","yearlist"));
     }
 
     public function DateFilter(Request $request)
     {
         $total=0;
-        $newfrom =  date("Y-m-d", strtotime($request->start));
-        $newto  =date("Y-m-d", strtotime($request->end));
-         $from =  date("d/m/Y", strtotime($request->start));
-        $to  = date("d/m/Y", strtotime($request->end));
-         $from11 =  date("m/d/Y", strtotime($request->start));
-        $to11  = date("m/d/Y", strtotime($request->end));
-        //   $from =  $request->start;
-        //   $to = $request->end;
+        $newfrom = date("Y-m-d", strtotime($request->start));
+        $newto  = date("Y-m-d", strtotime($request->end));
+       
+        $yearlist = Year::get();
+        foreach($yearlist as $y){
+           if($y->status==1){
+               $y_id=$y->id;
+           }
+       }
 
         $classes = Student_classe::get();
         $fees = Student_fee::get();
         $users = DB::table('students')
         ->join('records', 'students.id', '=', 'records.students_id')
         ->join('reports', 'records.id', '=', 'reports.records_id')
-        ->select('students.*', 'records.class_name', 'reports.fees')
-        // ->whereBetween('date',[$from, $to])->orWhereBetween('date' , [$newfrom , $newto])->orWhereBetween('date' , [$from11 , $to11])
-        // ->whereBetween('reports.created_at', [$newfrom." 00:00:00", $newto." 23:59:59"])->get();
+        ->where('records.session', '=', $y_id)
+        ->select('students.*', 'records.class_name','records.session', 'reports.fees')
         ->whereBetween('reports.updated_at', [$newfrom." 00:00:00", $newto." 23:59:59"])->get();
-            // ->whereBetween('reports.date', [$from, $to])->get();
         
         foreach($users as $u){
             $total += $u->fees;
         }
        
-    
+          $yearlist = Year::get();
+         foreach($yearlist as $y){
+            if($y->status==1){
+                $y_id=$y->id;
+            }
+        }
        
         $table ='';
         $m=1;
+        $fee = 0;
         foreach($users as $u) {
             foreach($classes as $c){
                 if($c->id==$u->class_name){
                     $class=$c->class_name;
                 }
                 foreach($fees as  $f){
-                    if($f->student_classes_id==$u->class_name)
+                     if($f->student_classes_id==$u->class_name && $f->years_id == $u->session){
                         $fee =$f->amount - $u->fees;
-                        
+                    }
                     }
             }
             $table .= '<tr>
-                    <td>' . $m++. '</td>
-                    <td>' . $u->name . '</td>
-                    <td><span>'. $u->father_name . '</span><span>' . $u->mother_name . '</span></td>
+                    <td class="width-20">' . $m++. '</td>
+                    <td class="students-name">' . $u->name . '</td>
+                    <td class="width-200">
+                    <div class="user-dtls">  
+                    <span>'. $u->father_name . '</span><span>' . $u->mother_name . '</span>
+                    </div>
+                    </td>
                     <td>'.$class.'</td>
-                    <td style="width:130px"><span class="deposit-box">' . $u->fees . '</span></td>
-                    <td><span class="remain-box">'.$fee.'</span></td>
+                    <td style="width:130px"><span class="deposit-box badge custom-badge badge-success">₹' . $u->fees . '</span></td>
+                    <td style="width:130px"><span class="remain-box badge custom-badge badge-danger">₹'.$fee.'</span></td>
                 </tr>';
-            
+           
         }
-         return response()->json(["total"=>$total,"table"=>$table]);
+         return response()->json(["total"=>$total,"table"=>$table,"y_id"=>$y_id]);
         // return response()->json(  $from);
         
     }

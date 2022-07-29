@@ -1504,3 +1504,6 @@ select {
     vertical-align: middle;
     margin-right: 5px;
 }
+label.error {
+    color: red;
+}

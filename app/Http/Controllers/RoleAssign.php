@@ -37,7 +37,7 @@ class RoleAssign extends Controller
         $user->save();
        
 
-        Session::flash('message', 'Role assigned successfully!');
+        Session::flash('success', 'Role assigned successfully!');
 
         return redirect()->route('assignrole.index');
     }
@@ -60,7 +60,7 @@ class RoleAssign extends Controller
         // $user->password= Hash::make($request->password);
         $user->update();
         
-        Session::flash('message', 'Data updated successfully!');
+        Session::flash('success', 'Data updated successfully!');
         return redirect('assignrole');
        
     }
@@ -69,7 +69,7 @@ class RoleAssign extends Controller
         $id = $request->input('role_id');
        
         User::destroy($id);
-        Session::flash('message', 'Data delete successfully!');
+        Session::flash('success', 'Data delete successfully!');
        
         return redirect('assignrole');
        

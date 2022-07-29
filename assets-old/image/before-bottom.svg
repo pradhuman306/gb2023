@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="192" height="383" viewBox="0 0 192 383">
+  <defs>
+    <linearGradient id="linear-gradient" x2="0.922" y2="1" gradientUnits="objectBoundingBox">
+      <stop offset="0" stop-color="#ffc5a0"/>
+      <stop offset="1" stop-color="#654fd3"/>
+    </linearGradient>
+  </defs>
+  <path id="Union_2" data-name="Union 2" d="M0,383V355a28,28,0,1,1,28,28Zm0-67V289a27,27,0,0,1,27-27h2a27,27,0,0,1,0,54Zm137-91.5V196h27.5A27.5,27.5,0,0,1,192,223.5v1a27.5,27.5,0,1,1-55,0Zm-69,0v-1A27.5,27.5,0,0,1,95.5,196H123v28.5a27.5,27.5,0,1,1-55,0ZM0,224V196H28A28,28,0,1,1,0,224Zm137-38V158.5A27.5,27.5,0,1,1,164.5,186Zm-41.5,0A27.5,27.5,0,1,1,123,158.5V186ZM0,186V158.5A27.5,27.5,0,0,1,27.5,131h1a27.5,27.5,0,0,1,0,55Zm137-65V92.5a27.5,27.5,0,1,1,55,0v1A27.5,27.5,0,0,1,164.5,121Zm-41.5,0A27.5,27.5,0,0,1,68,93.5v-1a27.5,27.5,0,1,1,55,0V121ZM0,121V93a28,28,0,1,1,28,28ZM137,28.5V0h27.5A27.5,27.5,0,0,1,192,27.5v1a27.5,27.5,0,0,1-55,0Zm-69,0v-1A27.5,27.5,0,0,1,95.5,0H123V28.5a27.5,27.5,0,0,1-55,0ZM0,28V0H28A28,28,0,1,1,0,28Z" transform="translate(192 383) rotate(180)" opacity="0.1" fill="url(#linear-gradient)"/>
+</svg>

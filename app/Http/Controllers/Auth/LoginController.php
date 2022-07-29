@@ -64,24 +64,25 @@ class LoginController extends Controller
 
         $fieldType = filter_var($request->name, FILTER_VALIDATE_EMAIL) ? 'email' : 'name';
         if (auth()->attempt(array($fieldType => $input['name'], 'password' => $input['password']))) {
-            if ($userData->user_type != NULL) {
-                return redirect()->route('home');
+            if (!empty($userData) && $userData->user_type != NULL) {
+                return redirect()->route('home')
+                ->with('success', 'Logged in successfully.');
             } else {
                 Auth::logout();
-                return redirect()->route('login')
-                    ->with('message', 'Please contact to admin for set your account type.');
+                 return redirect()->route('login')
+                    ->with('error', 'Please contact to admin for set your account type.');
             }
-
-            // return redirect()->route('home');
         } else {
+            
             return redirect()->route('login')
-                ->with('message', 'User name and Password are incorrect.!');
+                ->with('error', 'User name and Password are incorrect.!');
         }
     }
 
     public function logout()
     {
         Auth::logout();
-        return redirect('/login');
+        return redirect('/login')
+        ->with('success', 'Logged out successfully.');
     }
 }
