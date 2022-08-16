@@ -115,9 +115,8 @@
                         </div>
                     </div>
                 </div>
-
                 <div class="page-table" id="">
-                    <table id="examplea" class="  custom-table dataTable" style="width:100%;">
+                    <table id="examplea" class="tabel-res custom-table dataTable" style="width:100%;">
                         <thead>
                             <tr>
                                 <th style="width:30px">S.No.</th>

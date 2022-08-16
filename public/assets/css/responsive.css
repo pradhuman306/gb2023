@@ -1,3 +1,13 @@
+@media(max-width:1170px){
+    .dash-box-icon svg {
+        width: 45px;
+        height: 45px;
+    }
+    .dash-box-dtl h2 {
+        font-size: 30px;
+        line-height: 36px;
+    }
+}
 @media (max-width: 991px) {
     .open .main-menus {
         padding: 0 20px;
@@ -71,10 +81,104 @@
     .menu-open .main-aside {
         transform: translate(0);
     }
+    .menu-open .current-session {
+        opacity: 0;
+        visibility: hidden;
+    }
+    .menu-open .page-header {
+        z-index: 99;
+        background: transparent;
+        border-bottom: 0;
+    }
+    .menu-open #nav-icon span {
+        background: #fff;
+    }
+    .menu-open #nav-icon span:nth-child(1) {
+        top: 6px;
+        -webkit-transform: rotate(135deg);
+        -moz-transform: rotate(135deg);
+        -o-transform: rotate(135deg);
+        -ms-transform: rotate(135deg);
+        transform: rotate(135deg);
+    }
+    .menu-open #nav-icon span:nth-child(2) {
+        opacity: 0;
+        left: -60px;
+    }
+    .menu-open #nav-icon span:nth-child(3) {
+        top: 6px;
+        -webkit-transform: rotate(-135deg);
+        -moz-transform: rotate(-135deg);
+        -o-transform: rotate(-135deg);
+        -ms-transform: rotate(-135deg);
+        transform: rotate(-135deg);
+    }
+    .login-page-inr {
+        flex-direction: column-reverse;
+    }
+    .login-right {
+        flex: 0 0 75%;
+        padding: 20px;
+        overflow: auto;
+    }
+    .login-right, .login-left {
+        width: 100%;
+    }
+    .copyright-box {
+        display: none;
+    }
+    .login-left {
+        flex: 0 0 25%;
+        justify-content: center;
+        padding: 20px;
+    }
 }
 
 @media (max-width: 767px) {
+    
+    .page-header, .page-body {
+        padding: 15px;
+    }
+    .page-header h4 {
+        font-size: 20px;
+    }
     .sidebar-wrapper .main-menus {
         padding: 0;
+    }
+    .dash-box-dtl h2 {
+        font-size: 26px;
+        line-height: 30px;
+    }
+    .dash-box-icon svg {
+        width: 40px;
+        height: 40px;
+    }
+    .login-btn {
+        margin-bottom: 0;
+    }
+    .login-head {
+        padding-top: 25%;
+    }
+    .login-head {
+        padding-top: 25%;
+    }
+    .cus-menu {
+        padding: 5px 8px;
+        min-width: 100px;
+        font-size: 12px;
+    }
+    .head-right>div+div {
+        margin-left: 15px;
+    }
+}
+
+@media(max-width:500px){
+    .dash-box {
+        width: calc(100% - 20px);
+        margin: 5px 10px;
+        padding: 15px;
+    }
+    .page-header h4 {
+        font-size: 18px;
     }
 }
