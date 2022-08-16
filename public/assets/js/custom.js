@@ -59,6 +59,47 @@ nav.click(function() {
 $(document).ready(function() {
     $('.promote-student').hide();
     var table = $(".studenttable").DataTable({
+        processing: true,
+        serverSide: true,
+        ajax: {
+            url: 'getserverside',
+            dataSrc: 'data',
+            "data": function (d) {
+                return $.extend({}, d, {
+                    "selected_session":$('#select_session').find(':selected').data('value')
+                });
+            }
+        },
+
+        columns: [
+            {
+                "data": "one"
+            },
+            {
+                "data": "two"
+            },
+            {
+                "data": "name"
+            },
+            {
+                "data": "parents"
+            },
+            {
+                "data": "std_id"
+            },
+            {
+                "data": "address"
+            },
+            {
+                "data": "aadhar"
+            },
+            {
+                "data": "mob"
+            },
+            {
+                "data": "actions"
+            },
+        ],
         select: {
             style: "multi",
             selector: ".select-checkbox",
@@ -101,7 +142,7 @@ $(document).ready(function() {
         buttons: [
             'csv'
         ],
-        stateSave: true,
+        // stateSave: true,
     });
 
     $('body').on('click', '.select-checkbox', function() {
@@ -120,7 +161,8 @@ $(document).ready(function() {
     $("#frm-example").on("submit", function(e) {
         var selectedIds = [];
         for (var i = 0; i < table.rows('.selected').data().length; i++) {
-            selectedIds.push(table.rows('.selected').data()[i][0]);
+            selectedIds.push(table.rows('.selected').data()[i]['one']);
+            // selectedIds.push(table.rows('.selected').data()[i][0]);
         }
         var form = this;
         var row = JSON.stringify(selectedIds);

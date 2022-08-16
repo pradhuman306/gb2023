@@ -197,8 +197,8 @@
                                             <path d="M12 17V10" stroke="#721c24" stroke-width="2" />
                                         </svg> You want you sure delete this
                                         record?</span>
-                                    <input type="hidden" , name="sid" id="s_id">
-                                    <input type="hidden" , name="rid" id="r_id">
+                                    <input type="hidden" name="sid" id="s_id">
+                                    <input type="hidden" name="rid" id="r_id">
                                 </div>
                                 <div class="modal-footer">
                                     <div class="col-md-12 text-center">

@@ -67,15 +67,10 @@
                                     $y_id=$y->id;
                                     }
                                     }
-                                    $records = App\Models\Record::where("session","=",$y_id)->get();
-                                    $studentCount = 0
+                                    $TotalstudentsWithRecord = Illuminate\Support\Facades\DB::table('students')->join('records', 'students.id', '=', 'records.students_id')->join('student_classes', 'records.class_name', '=', 'student_classes.id')->select('students.*', 'student_classes.class_name', 'records.session','records.id as record_id')->where("records.session","=", $y_id)->get();
+                                $totalrecord = count($TotalstudentsWithRecord);
                                     @endphp
-                                    @foreach($records as $r)
-                                    @php
-                                    $studentCount += App\Models\Student::Where('id', $r->students_id)->get()->count();
-                                    @endphp
-                                    @endforeach
-                                    <span>Students <small class="badge badge-primary">{{$studentCount}}</small> </span>
+                                    <span>Students <small class="badge badge-primary">{{$totalrecord}}</small> </span>
                                 </a>
                             </li>
 
@@ -365,7 +360,8 @@
             });
         });
 
-        $(".studentpopup").click(function() {
+        $('body').on('click', '.studentpopup', function() {
+
             var url = $(this).attr('data-href');
 
             $.ajax({
@@ -396,9 +392,35 @@
         });
 
 
-        $(".fees-popup").click(function() {
-            var fees = $(this).attr('fees-href');
+        $('body').on('click', '.fees-popup', function() {
 
+            var url = $(this).attr('data-href');
+            $.ajax({
+                url: url,
+                method: "GET",
+                success: function(fb) {
+                    var resp = $.parseJSON(fb);
+                    $('#student_ids').val(resp.student_ids);
+                    $('#scholar_nos').val(resp.scholar_nos);
+                    $('#names').val(resp.names);
+                    $('#fname').val(resp.fname);
+                    $('#mname').val(resp.mname);
+                    $('#addres').val(resp.addres);
+                    $('#acc').val(resp.acc);
+                    $('#m2').val(resp.m2);
+                    $('#m1').val(resp.m1);
+                    $('#sdob').val(resp.sdob);
+                    $('#samargid').val(resp.samargid);
+                    $('#aadhar').val(resp.aadhar);
+                    $('#classes').html(resp.output);
+                    $('#sessions').html(resp.y_output);
+                    $('#sIds').val(resp.id);
+                    $('#student-id').val(resp.id);
+                    $('#old_dues').html(resp.old_dues);
+                }
+            });
+
+            var fees = $(this).attr('fees-href');
             $.ajax({
                 url: fees,
                 method: "GET",
@@ -422,10 +444,12 @@
                         $('.student-fees').html(resp.table);
                         $('#profile_pic').html(resp.profile);
                         $('#c_id').val(resp.cid);
+                        setTimeout(() => {
+                            $('#studentFeeModal').modal('show');
+                        }, 1000);
                     }
                 }
             });
-            $('#studentFeeModal').modal('show');
         });
 
         //import 

@@ -25,7 +25,7 @@
                                 @endphp
                                 <select class="cus-menu" name="select_session" id="select_session">
                                     @foreach($years as $yy)
-                                    <option @if($yy->status == 1) selected @endif value="{{url('remove',$yy->id)}}">{{$yy->years}}</option>
+                                    <option data-value="{{$yy->id}}" @if($yy->status == 1) selected @endif value="{{url('remove',$yy->id)}}">{{$yy->years}}</option>
                                     @endforeach
                                 </select>
                             </span>
@@ -99,7 +99,6 @@
                                     <th class="width-30"></th>
                                     <th class="width-30"></th>
                                     <th class="width-160">Name</th>
-                                    <th class="hide">Class</th>
                                     <th>Parents</th>
 
                                     <th class="width-50">Student Id</th>
@@ -111,14 +110,14 @@
                                 </tr>
                             </thead>
                             <tbody id="result">
-                                @php $i = 0; @endphp
+                                <!-- @php $i = 0; @endphp
                                 @foreach($records as $r)
                                 @php
                                 $students= App\Models\Student::Where('id', $r->students_id)->get();
                                 @endphp
                                 @foreach($students as $student)
-                                @if($r->session == $y_id)
-                                <tr>
+                                @if($r->session == $y_id) -->
+                                <!-- <tr>
                                     <td class="width-30">{{$student->id}}</td>
                                     <td class="width-30"></td>
                                     <td class="width-160">
@@ -137,8 +136,8 @@
                                     @foreach($tests as $class)
                                     @if($r->class_name==$class->id)
                                     <td class="hide">{{$class->class_name}}
-                                    </td>
-                                    @elseif($r->class_name==NULL)
+                                    </td> -->
+                                    <!-- @elseif($r->class_name==NULL)
                                     <td class="hide">
                                     </td>
                                     @endif
@@ -153,13 +152,13 @@
 
                                     <td class="width-50"><span class="custom-badge badge badge-primary">{{$student->student_id}}</span>
                                     </td>
-                                    <!-- <td>{{$student->scholar_no}}</td> -->
-                                    <td>{{$student->address}}</td>
+                                     <td>{{$student->scholar_no}}</td> -->
+                                    <!-- <td>{{$student->address}}</td>
                                     <td>{{$student->aadhar_no}}</td>
                                     <td>{{$student->mobile_no}} <br>
-                                        {{$student->mobile_no2}}
-                                    </td>
-                                    <td>
+                                        {{$student->mobile_no2}} -->
+                                    <!-- </td> --> 
+                                    <!-- <td>
                                         <ul class="d-flex">
                                             <li class="tool tool-view">
                                                 <a data-toggle="tooltip" data-placement="top" data-original-title="Fees" class="fees-popup btn-sml" data-id="{{$student->id}}" data-href="{{route('students.edit',$student->id)}}" fees-href="{{url('show',['student'=>$student->id,'session'=>$r->session])}}">
@@ -181,14 +180,14 @@
                                                     </svg>
                                                 </a>
 
-                                            </li>
+                                            </li> -->
                                             <!-- <li class="tool tool-view" style="display:none;">
                                                 <a class=""
                                                     href="{{url('showResult',['student'=>$student->id,'class'=>$r->class_name])}}">
                                                     <img src="{{url('/')}}/assets/image/result.png" width="16px" alt="">
                                                 </a>
                                             </li> -->
-                                            <li class="tool tool-delete">
+                                            <!-- <li class="tool tool-delete">
                                                 @if(Auth::check() && Auth::user()->user_type == "Admin")
                                                 <a data-toggle="tooltip" data-placement="top" data-original-title="Delete" href="javascript:void(0)" type="submit" class="btn-sml deletestudent btn-sml" data-id="{{$student->id}}" data-stdname="{{ Str::title($student->name)}}" data-name="{{$r->id}}">
                                                     <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -205,7 +204,7 @@
                                 </tr>
                                 @endif
                                 @endforeach
-                                @endforeach
+                                @endforeach -->
                             </tbody>
                         </table>
                     </div>
@@ -293,8 +292,8 @@
                                         <span id="studentnamelbl"></span>?
                                     </span>
 
-                                    <input type="hidden" , name="sid" id="s_id">
-                                    <input type="hidden" , name="rid" id="r_id">
+                                    <input type="hidden" name="sid" id="s_id">
+                                    <input type="hidden" name="rid" id="r_id">
                                 </div>
                                 <div class="modal-footer">
                                     <div class="col-md-12 text-center">

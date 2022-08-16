@@ -26,7 +26,7 @@
                     @endphp
                     <select class="cus-menu" name="select_session" id="select_session">
                         @foreach($years as $yy)
-                        <option @if($yy->status == 1) selected @endif value="{{url('remove',$yy->id)}}">{{$yy->years}}</option>
+                        <option data-value="{{$yy->id}}" @if($yy->status == 1) selected @endif value="{{url('remove',$yy->id)}}">{{$yy->years}}</option>
                         @endforeach
                     </select>
                             </span>
