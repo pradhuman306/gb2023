@@ -138,7 +138,7 @@ class StudentController extends Controller
           
         foreach ($studentsWithRecord as $key => $stdRecord) {
 
-            $datahref= route("students.edit",$stdRecord->id);
+            $datahref= route("students.edit",["student"=>$stdRecord->id,"session"=>$stdRecord->session]);
             $feeshref= url("show",["student"=>$stdRecord->id,"session"=>$stdRecord->session]);
               $li_one = '<li class="tool tool-view">
                    <a data-toggle="tooltip" data-placement="top" data-original-title="Fees" class="fees-popup btn-sml" data-id="'.$stdRecord->id.'" data-href="'.$datahref.'" fees-href="'.$feeshref.'">
@@ -266,7 +266,7 @@ class StudentController extends Controller
     {
        
     }
-    public function edit($student)
+    public function edit($student, Request $request)
     {
        $year = Year::get();
         foreach($year as $y){
@@ -275,7 +275,10 @@ class StudentController extends Controller
                 $y_name=$y->years;
             }
         }
-      
+
+        if(isset($request->session)){
+            $y_id = $request->session;
+        }                   
        
         $records = Record::where("students_id", "=", $student)->where("session","=", $y_id)->first();
         $students = Student::where("id", "=", $student)->first();
